@@ -35,7 +35,7 @@ def cantidad_filmaciones_mes(mes):
 
 @app.get('/cantidad_filmaciones_dia/{dia}')
 def cantidad_filmaciones_dia(dia):
-    cantidad = df["nombre_dia_espanol"].str.count(dia, flags=re.IGNORECASE).sum()
+    cantidad = (df[df["nombre_dia_espanol"].str.count(dia, flags=re.IGNORECASE)]).sum()
     return cantidad
 
 # Supongamos que tienes un DataFrame llamado df con una columna "dia_semana" que contiene los días de la semana en español
