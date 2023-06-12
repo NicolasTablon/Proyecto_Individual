@@ -28,13 +28,13 @@ def cantidad_filmaciones_mes(mes):
 
 @app.get('/cantidad_filmaciones_dia/{dia}')
 def cantidad_filmaciones_dia(dia):
-    cantidad = len(df[df["nombre_dia_espanol"].str.contains(dia, flags=re.IGNORECASE)])
-    return cantidad
-
-# Supongamos que tienes un DataFrame llamado df con una columna "nombre_dia_espanol" que contiene los días de la semana en español
-dia_consultado = "lunes"  # Por ejemplo, "lunes" es el día que deseas consultar
-cantidad = cantidad_filmaciones_dia(dia_consultado)
-print(f"{cantidad} cantidad de películas fueron estrenadas en los días {dia_consultado}")
+    dia = dia.lower()
+    filmaciones_dia = df[df["nombre_dia_espanol"].str.lower() == dia]
+    cantidad = len(filmaciones_dia)
+    
+    mensaje = f"{cantidad} cantidad de películas fueron estrenadas en el día {dia.capitalize()}."
+    
+    return mensaje
 
 @app.get("/score_titulo/{titulo_de_la_filmacion}")
 def score_titulo(titulo_de_la_filmacion):
