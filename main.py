@@ -14,7 +14,7 @@ response = requests.get(url)
 response.raise_for_status()
 
 # Leer el archivo CSV
-df = pd.read_csv(io.BytesIO(response.content)encoding="UTF-8", delimiter=",")
+df = pd.read_csv(io.BytesIO(response.content), encoding="UTF-8", delimiter=",")
 
 @app.get('/cantidad_filmaciones_mes/{mes}')
 def cantidad_filmaciones_mes(mes):
