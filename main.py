@@ -14,7 +14,7 @@ response = requests.get(url)
 response.raise_for_status()
 
 # Leer el archivo CSV
-df = pd.read_csv(pd.compat.StringIO(response.text))
+df = pd.read_csv(io.BytesIO(response.content))
 
 @app.on_event("startup")
 def load_data():
