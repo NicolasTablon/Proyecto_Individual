@@ -16,13 +16,6 @@ response.raise_for_status()
 # Leer el archivo CSV
 df = pd.read_csv(io.BytesIO(response.content), error_bad_lines=False)
 
-@app.on_event("startup")
-def load_data():
-    global df
-    url = "https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv"
-    response = requests.get(url).content.decode('utf-8')
-    df = pd.read_csv(StringIO(response))
-
 @app.get('/cantidad_filmaciones_mes/{mes}')
 def cantidad_filmaciones_mes(mes):
     mes = mes.lower()
