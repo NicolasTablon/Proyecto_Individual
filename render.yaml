@@ -1,1 +1,4 @@
 
+# render.yaml
+buildCommand:
+  - pip install -r requirements.txt
