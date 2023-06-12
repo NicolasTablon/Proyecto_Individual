@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime
 import requests
+from flask import Flask, jsonify, request
 from io import StringIO
 app = FastAPI()
 url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
@@ -90,8 +91,6 @@ def get_director(director: str):
 
     return [director, retorno_director, resp]
 
-
-from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 @app.route('/recomendacion', methods=['GET'])
