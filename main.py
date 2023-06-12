@@ -5,7 +5,7 @@ import json
 import re
 from datetime import datetime
 import requests
-from flask import Flask, jsonify, request
+from typing import List
 from io import StringIO
 app = FastAPI()
 url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
@@ -92,19 +92,27 @@ def get_director(director: str):
     return [director, retorno_director, resp]
 
 
-app = Flask(__name__)
-@app.route('/recomendacion', methods=['GET'])
-def recomendacion():
-    titulo = request.args.get('titulo')  # Obtener el parámetro 'titulo' de la solicitud GET
-    
-    # Filtrar las películas similares basadas en el título proporcionado
-    pelicula_actual = df[df['title'] == titulo]
-    puntajes_similares = df[df['vote_average'] >= pelicula_actual['vote_average'].values[0]]
-    peliculas_similares = puntajes_similares.sort_values(by='vote_average', ascending=False)['title'].tolist()
-    
-    # Devolver una lista de 5 películas recomendadas en formato JSON
-    recomendaciones = peliculas_similares[:5]
-    return jsonify(recomendaciones)
+@app.get('/recomendacion')
+async def recomendacion(titulo: str) -> List[str]:
+    # Convertir el título proporcionado a minúsculas
+    titulo = titulo.lower()
+
+    # Obtener la fila correspondiente al título proporcionado
+    pelicula = df.loc[df['title'].str.lower() == titulo]
+
+    if pelicula.empty:
+        return []
+
+    # Obtener la puntuación de la película
+    puntuacion = pelicula['vote_average'].values[0]
+
+    # Encontrar películas similares según la puntuación
+    peliculas_similares = df.loc[df['vote_average'] >= puntuacion].sort_values('vote_average', ascending=False)
+
+    # Obtener los títulos de las 5 películas con mayor puntuación
+    recomendaciones = peliculas_similares['title'].head(5).tolist()
+
+    return recomendaciones
 
 if __name__ == '__main__':
     app.run()
