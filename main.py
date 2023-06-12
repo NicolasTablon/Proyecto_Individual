@@ -110,7 +110,6 @@ def recomendacion():
 if __name__ == '__main__':
     app.run()
 
-    return recommended_movies
 @app.get("/inicio")
 async def ruta_prueba():
     return "Hola"
