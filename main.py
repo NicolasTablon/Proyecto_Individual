@@ -7,7 +7,7 @@ from datetime import datetime
 import requests
 from io import StringIO
 app = FastAPI()
-url = 'https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv'
+url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
 
 # Descargar el archivo CSV
 response = requests.get(url)
