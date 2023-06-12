@@ -1,6 +1,8 @@
+import pandas as pd
+
 def recomendacion(titulo):
     # Cargar el conjunto de datos de películas
-    df_movies = pd.read_csv('ruta/al/archivo/csv/con/puntuaciones_de_peliculas.csv')
+    df_movies = pd.read_csv('https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv')
 
     # Normalizar los títulos de las películas en la columna "title"
     df_movies['title'] = df_movies['title'].str.lower().str.strip()
