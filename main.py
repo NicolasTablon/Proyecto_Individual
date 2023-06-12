@@ -10,7 +10,7 @@ app = FastAPI()
 url = 'https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv'
 
 # Descargar el archivo CSV
-response = requests.get(url)
+response = requests.get(url, encoding="UTF-8",delimiter=",")
 response.raise_for_status()
 
 # Leer el archivo CSV
