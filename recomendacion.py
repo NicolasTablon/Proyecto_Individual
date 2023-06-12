@@ -1,4 +1,5 @@
 import pandas as pd
+from flask import Flask, jsonify, request
 
    
 url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
