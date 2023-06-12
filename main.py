@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime
 import requests
+import flask
 from io import StringIO
 app = FastAPI()
 url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
