@@ -1,6 +1,18 @@
 from fastapi import FastAPI
-
+import pandas as pd
+import json
+import re
+from datetime import datetime
+import requests
+from io import StringIO
 app = FastAPI()
+
+@app.on_event("startup")
+def load_data():
+    global df
+    url = "https://raw.githubusercontent.com/TU_USUARIO/TU_REPOSITORIO/main/data.csv"
+    response = requests.get(url).content.decode('utf-8')
+    df = pd.read_csv(StringIO(response))
 
 @app.get('/cantidad_filmaciones_mes/{mes}')
 def cantidad_filmaciones_mes(mes):
