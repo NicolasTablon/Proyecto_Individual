@@ -10,11 +10,11 @@ app = FastAPI()
 url = 'https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv'
 
 # Descargar el archivo CSV
-response = requests.get(url, encoding="UTF-8",delimiter=",")
+response = requests.get(url)
 response.raise_for_status()
 
 # Leer el archivo CSV
-df = pd.read_csv(io.BytesIO(response.content), error_bad_lines=False)
+df = pd.read_csv(io.BytesIO(response.content)encoding="UTF-8", delimiter=",")
 
 @app.get('/cantidad_filmaciones_mes/{mes}')
 def cantidad_filmaciones_mes(mes):
