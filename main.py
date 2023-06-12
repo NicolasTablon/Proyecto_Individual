@@ -93,8 +93,8 @@ def get_director(director: str):
 
 from flask import Flask, jsonify, request
 
- 
- @app.route('/recomendacion', methods=['GET'])
+app = Flask(__name__)
+@app.route('/recomendacion', methods=['GET'])
 def recomendacion():
     titulo = request.args.get('titulo')  # Obtener el parámetro 'titulo' de la solicitud GET
     
