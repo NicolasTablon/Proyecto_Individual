@@ -10,7 +10,7 @@ app = FastAPI()
 @app.on_event("startup")
 def load_data():
     global df
-    url = "https://raw.githubusercontent.com/TU_USUARIO/TU_REPOSITORIO/main/data.csv"
+    url = "https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv"
     response = requests.get(url).content.decode('utf-8')
     df = pd.read_csv(StringIO(response))
 
