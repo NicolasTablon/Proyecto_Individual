@@ -7,6 +7,7 @@ import requests
 from io import StringIO
 app = FastAPI()
 
+df=pd.read_csv(r"C:\Users\Equipo\OneDrive\Escritorio\Csv_Proyecto_Terminado.csv")
 @app.on_event("startup")
 def load_data():
     global df
