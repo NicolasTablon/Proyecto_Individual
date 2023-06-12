@@ -9,23 +9,20 @@ response.raise_for_status()
 # Leer el archivo CSV
 df_movies = pd.read_csv(io.BytesIO(response.content), encoding="UTF-8", delimiter=",", error_bad_lines=False)
 
- def recomendacion(titulo):
-    # Normalizar los títulos de las películas en la columna "title"
-    df_movies['title'] = df_movies['title'].str.lower().str.strip()
+ @app.route('/recomendacion', methods=['GET'])
+def recomendacion():
+    titulo = request.args.get('titulo')  # Obtener el parámetro 'titulo' de la solicitud GET
+    
+    # Filtrar las películas similares basadas en el título proporcionado
+    pelicula_actual = df[df['title'] == titulo]
+    puntajes_similares = df[df['vote_average'] >= pelicula_actual['vote_average'].values[0]]
+    peliculas_similares = puntajes_similares.sort_values(by='vote_average', ascending=False)['title'].tolist()
+    
+    # Devolver una lista de 5 películas recomendadas en formato JSON
+    recomendaciones = peliculas_similares[:5]
+    return jsonify(recomendaciones)
 
-    # Filtrar por el título de la película ingresada
-    selected_movie = df_movies[df_movies['title'] == titulo.lower().strip()]
-
-    if selected_movie.empty:
-        return "La película no se encuentra en la base de datos."
-
-    # Calcular la similitud de puntuación entre la película ingresada y el resto de películas
-    similarity_scores = df_movies[['title', 'vote_average']].corrwith(selected_movie['vote_average'])
-
-    # Ordenar las películas según el score de similitud en orden descendente
-    similar_movies = similarity_scores.sort_values(ascending=False)
-
-    # Obtener los nombres de las películas recomendadas (excluyendo la película ingresada)
-    recommended_movies = similar_movies.index[1:6].tolist()
+if __name__ == '__main__':
+    app.run()
 
     return recommended_movies
