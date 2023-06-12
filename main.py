@@ -6,8 +6,15 @@ from datetime import datetime
 import requests
 from io import StringIO
 app = FastAPI()
+url = 'https://github.com/NicolasTablon/Proyecto_Individual/blob/main/Csv_Proyecto_Terminado.csv'
 
-df=pd.read_csv(r"C:\Users\Equipo\OneDrive\Escritorio\Csv_Proyecto_Terminado.csv")
+# Descargar el archivo CSV
+response = requests.get(url)
+response.raise_for_status()
+
+# Leer el archivo CSV
+df = pd.read_csv(pd.compat.StringIO(response.text))
+
 @app.on_event("startup")
 def load_data():
     global df
