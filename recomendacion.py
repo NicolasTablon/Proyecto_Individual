@@ -1,13 +1,15 @@
 import pandas as pd
 
-def recomendacion(titulo):
-    # Descargar el archivo CSV
+   
+url = 'https://raw.githubusercontent.com/NicolasTablon/Proyecto_Individual/main/Csv_Proyecto_Terminado.csv'
+# Descargar el archivo CSV
 response = requests.get(url)
 response.raise_for_status()
 
 # Leer el archivo CSV
-df = pd.read_csv(io.BytesIO(response.content), encoding="UTF-8", delimiter=",", error_bad_lines=False)
+df_movies = pd.read_csv(io.BytesIO(response.content), encoding="UTF-8", delimiter=",", error_bad_lines=False)
 
+ def recomendacion(titulo):
     # Normalizar los títulos de las películas en la columna "title"
     df_movies['title'] = df_movies['title'].str.lower().str.strip()
 
