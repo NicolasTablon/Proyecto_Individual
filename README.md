@@ -4,17 +4,13 @@
 Machine Learning Operations (MLOps)
 
 Henry's Labs
-Por Nicolás Tablón (DTS-11)
+Por Nicolás Tablón (DTS-12)
 
 ## ESTRUCTURA DEL PROYECTO ⚪
 Los principales archivos desarrollados (que en el apartado siguiente se describirán en forma detallada y precisa su contenido, son:
 
 •	ETL.ipynb
-
-
-
 •	APIS.ipynb
-
 •	main.py
 
 ## DESARROLLO DE LA SOLUCIÓN (PROYECTO) ⚪
@@ -43,17 +39,17 @@ Los principales archivos desarrollados (que en el apartado siguiente se describi
 ## Etapa de desarrollo API ➡️
 Debemos crear 6 funciones para los endpoints que se consumirán en la API
 
-•	def cantidad_filmaciones_mes( Mes ): Se ingresa un mes en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en el mes consultado en la totalidad del dataset.
+•	def peliculas_idioma( Idioma: str ): Se ingresa un idioma . Debe devolver la cantidad de películas producidas en ese idioma..
                    
-•	def cantidad_filmaciones_dia( Dia ): Se ingresa un día en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en día consultado en la totalidad del dataset.
+•	def peliculas_duracion( Pelicula: str ): Se ingresa una pelicula. Debe devolver la duracion y el año.
                     
-•	def score_titulo( titulo_de_la_filmación ): Se ingresa el título de una filmación esperando como respuesta el título, el año de estreno y el score.
+• def franquicia( Franquicia: str ): Se ingresa la franquicia, retornando la cantidad de peliculas, ganancia total y promedio
                     
-•	def votos_titulo( titulo_de_la_filmación ): Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. La misma variable deberá de contar con al menos 2000 valoraciones, caso contrario, debemos contar con un mensaje avisando que no cumple esta condición y que por ende, no se devuelve ningun valor.
+•	def peliculas_pais( Pais: str ): Se ingresa un país , retornando la cantidad de peliculas producidas en el mismo.
 
- •	def get_actor( nombre_actor ): Se ingresa el nombre de un actor que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. Además, la cantidad de películas que en las que ha participado y el promedio de retorno. La definición no deberá considerar directores.
+ •	def productoras_exitosas( Productora: str ): Se ingresa la productora, entregandote el revunue total y la cantidad de peliculas que realizo.
                     
-•	def get_director( nombre_director ): Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
+•	def get_director( nombre_director ): Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma, en formato lista.
 
 
 ## Etapa del Sistema de Recomendación ➡️
